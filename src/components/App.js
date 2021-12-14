@@ -6,8 +6,10 @@ import SocialNetwork from '../abis/SocialNetwork.json'
 import Navbar from './Navbar'
 import Main from './Main'
 
-class App extends Component {
 
+//component class for react 
+class App extends Component {
+  //Initialization function
   async componentWillMount() {
     await this.loadWeb3()
     await this.loadBlockchainData()
@@ -22,7 +24,7 @@ class App extends Component {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     else {
-      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask')
     }
   }
 
@@ -30,6 +32,8 @@ class App extends Component {
     const web3 = window.web3
     // Load account
     const accounts = await web3.eth.getAccounts()
+    console.log(accounts);
+    console.log(typeof(accounts));
     this.setState({ account: accounts[0] })
     // Network ID
     const networkId = await web3.eth.net.getId()

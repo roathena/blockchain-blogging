@@ -12,7 +12,9 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
   })
 
   describe('deployment', async () => {
+    //Checking whether the smart contract is deployed
     it('deploys successfully', async () => {
+      //checking whether the address of the deployed smart contract is not null
       const address = await socialNetwork.address
       assert.notEqual(address, 0x0)
       assert.notEqual(address, '')
@@ -21,8 +23,9 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
     })
 
     it('has a name', async () => {
+      // checking whether the constructor inside the contract is initialised
       const name = await socialNetwork.name()
-      assert.equal(name, 'Dapp University Social Network')
+      assert.equal(name, 'SocNet')
     })
   })
 
@@ -67,7 +70,7 @@ contract('SocialNetwork', ([deployer, author, tipper]) => {
       const event = result.logs[0].args
       assert.equal(event.id.toNumber(), postCount.toNumber(), 'id is correct')
       assert.equal(event.content, 'This is my first post', 'content is correct')
-      assert.equal(event.tipAmount, '1000000000000000000', 'tip amount is correct')
+      assert.equal(event.tipAmount, web3.utils.toWei('1', 'Ether'), 'tip amount is correct')
       assert.equal(event.author, author, 'author is correct')
 
       // Check that author received funds

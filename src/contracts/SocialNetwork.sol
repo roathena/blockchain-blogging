@@ -27,7 +27,7 @@ contract SocialNetwork {
     );
 
     constructor() public {
-        name = "Dapp University Social Network";
+        name = "SocNet";
     }
 
     function createPost(string memory _content) public {
@@ -37,7 +37,7 @@ contract SocialNetwork {
         postCount ++;
         // Create the post
         posts[postCount] = Post(postCount, _content, 0, msg.sender);
-        // Trigger event
+        // Trigger event in BC
         emit PostCreated(postCount, _content, 0, msg.sender);
     }
 
@@ -58,3 +58,8 @@ contract SocialNetwork {
         emit PostTipped(postCount, _post.content, _post.tipAmount, _author);
     }
 }
+
+
+//1 wei = 1 wei
+//1 gwei = 10^9 wei
+//1 ether = 10^18 wei
